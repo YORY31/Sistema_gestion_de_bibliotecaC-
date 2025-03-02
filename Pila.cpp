@@ -1,4 +1,5 @@
 #include "Pila.h"
+#include <iostream>
 
 Pila::Pila(): _ultimo(NULL)
 {
@@ -6,11 +7,26 @@ Pila::Pila(): _ultimo(NULL)
 
 void Pila::Agregar(Elemento* elemento)
 {
-    /* Llenar este método con su implementación de Agregar elemento a la pila */
+   if(elemento == nullptr) {
+        std::cerr << "Error: No se puede agregar un elemento nulo" << std::endl;
+    return;
+}
+
+    elemento->SetSiguiente (_ultimo);  
+    _ultimo = elemento;
 }
 
 Elemento* Pila::Extraer()
 {
-    /* Llenar este método con su implementación de Extraer un elemento de la pila */
-    return NULL;
+    
+            if(_ultimo == nullptr) {
+                return nullptr;
+                std ::cerr << "la lista esta vacia , no hay elementos para extraee";
+            }
+           
+
+            Elemento* temp = _ultimo;
+            _ultimo = _ultimo->GetSiguiente();
+            temp->SetSiguiente(nullptr);
+            return temp;
 }
